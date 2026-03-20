@@ -1,1 +1,3 @@
-# ot-harjoitustyo
+# Ohjelmistotekniikka, harjoitustyö
+
+Ohjelmistotekniikka projekti
