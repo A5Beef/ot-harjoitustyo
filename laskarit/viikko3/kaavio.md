@@ -1,5 +1,7 @@
 ## Monopoli, alustava luokkakaavio
 
+
+```mermaid
 ---
 title: Monopoly Diagram
 ---
@@ -42,3 +44,4 @@ classDiagram
     }
 
     note for NormaalitKadut "Constraint: talot ∈ [1..4]"
+```
