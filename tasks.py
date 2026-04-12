@@ -21,5 +21,5 @@ def test(ctx):
     ctx.run("pytest src", pty=True)
 
 @task
-def format(ctx):
+def lint(ctx):
     ctx.run("autopep8 --in-place --recursive src", pty=True)

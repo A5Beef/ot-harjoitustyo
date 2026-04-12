@@ -1,5 +1,5 @@
 import random
-from .tetrominoes import Tetromino, TetrominoType
+from tetrominoes import Tetromino, TetrominoType
 
 BOARD_WIDTH = 10
 BOARD_HEIGHT = 20
