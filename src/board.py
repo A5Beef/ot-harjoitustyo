@@ -1,5 +1,5 @@
 import random
-from tetrominoes import Tetromino, TetrominoType
+from .tetrominoes import Tetromino, TetrominoType
 
 BOARD_WIDTH = 10
 BOARD_HEIGHT = 20
@@ -14,11 +14,10 @@ class Board:
 
     def _is_valid_position(self, piece: Tetromino): #tarkistaa tyhjä tai reunat
         for x, y in piece.get_blocks():
-            if x < 0 or x >= 10:
+            if x < 0 or x >= 10: #tarkistaa vasen ja oikean reunan
                 return False
-            elif y >= 20:
+            if y >= 20: #tarkistaa alareunan
                 return False
-            elif self.grid[y][x] is not None:
+            if self.grid[y][x] is not None: #tarkistaa onko ruutu tyhjä
                 return False
-            
         return True #tarkistetty, ok
