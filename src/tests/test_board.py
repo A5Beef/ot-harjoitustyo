@@ -24,3 +24,34 @@ class TestBoard(unittest.TestCase):
     def test_invalid_position_y(self):
         Zpiece = Tetromino(TetrominoType.Z, x=0, y=23)
         self.assertFalse(self.board._is_valid_position(Zpiece))
+
+class TestMovement(unittest.TestCase):
+    def setUp(self):
+        self.board = Board()
+
+    def test_rotate(self):
+        self.board.rotate()
+        self.assertEqual(self.board.currentblock.rotation, 1)
+
+        self.board.rotate()
+        self.assertEqual(self.board.currentblock.rotation, 2)
+
+        self.board.rotate()
+        self.assertEqual(self.board.currentblock.rotation, 3)
+
+        self.board.rotate()
+        self.assertEqual(self.board.currentblock.rotation, 0)
+
+    def test_move_left(self):
+        self.board.move_left()
+        self.assertEqual(self.board.currentblock.x, 2) #block is in the middle so x value varies depending on block
+
+    def test_move_right(self):
+        self.board.move_right()
+        self.assertEqual(self.board.currentblock.x, 4) #same here
+
+    def test_move_down(self):
+        self.board.move_down()
+        self.assertEqual(self.board.currentblock.y, 1)
+        self.board.move_down()
+        self.assertEqual(self.board.currentblock.y, 2)

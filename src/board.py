@@ -22,3 +22,56 @@ class Board:
             if self.grid[y][x] is not None:  # tarkistaa onko ruutu tyhjä
                 return False
         return True  # tarkistetty, ok
+
+    def move_left(self):
+        self.currentblock.x -= 1
+        if not self._is_valid_position(self.currentblock):
+            self.currentblock.x += 1
+
+    def move_right(self):
+        self.currentblock.x += 1
+        if not self._is_valid_position(self.currentblock):
+            self.currentblock.x -= 1
+
+    def move_down(self):
+        self.currentblock.y += 1
+        if not self._is_valid_position(self.currentblock):
+            self.currentblock.y -= 1
+            self._lock_piece()
+            return False
+        return True
+
+    def _lock_piece(self): #lukitsee palat ja tarkistaa loppuiko peli
+        for x, y in self.currentblock.get_blocks():
+            self.grid[y][x] = self.currentblock.color
+
+        self.currentblock = self.nextblock
+        self.nextblock = Tetromino(random.choice(list(TetrominoType)))
+
+        if not self._is_valid_position(self.currentblock):
+            self.gameover = True
+
+    def rotate(self):
+        self.currentblock.rotate()
+        if not self._is_valid_position(self.currentblock):
+            self.currentblock.unrotate()
+
+    def unrotate(self):
+        self.currentblock.unrotate()
+        if not self._is_valid_position(self.currentblock):
+            self.currentblock.rotate()
+
+    def _clear_lines(self): #tarkistaa ja tyhjentää täydet rivit
+        cleared_rows = []
+        for row in range(20):
+            if None not in self.grid[row]:
+                cleared_rows.append(row)
+                self.score += 100
+
+        # täysrivien poisto
+        for row in reversed(cleared_rows):
+            del self.grid[row]
+
+        # Uudet rivit ylös, vanhat alas
+        for _ in range(len(cleared_rows)):
+            self.grid.insert(0, [None] * 10)
