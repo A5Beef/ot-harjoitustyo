@@ -1,6 +1,6 @@
-# Ohjelmistotekniikka, harjoitustyö
+# Ohjelmistotekniikka, harjoitustyö - Tetris
 
-Ohjelmistotekniikka projekti - Tetris
+Tetris-peli, pygamella tehty.
 
 
 ## Dokumentaatio
