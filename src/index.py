@@ -18,32 +18,66 @@ renderer = Renderer(screen, board, CELL_SIZE)
 clock = pygame.time.Clock()
 FPS = 60
 GRAVITY_TICK = 30
+MOVE_DELAY = 10
+DAS = 10        # delay before auto-shift, kuinka kauan pitää painaa ennenkuin alkaa nopea liike
+ARR = 3         # auto-repeat rate, kuinka nopeasti palikka liikkuu DAS jälkeen, 0 = heti, 1 = joka frame, 2 = joka toinen frame jne.
+LOCK_DELAY_MAX = 30
 
 gravity_counter = 0
+move_delay = 0
+lock_delay = 0
+
 
 running = True
 while running:
     clock.tick(FPS)
     gravity_counter += 1
 
-    # events
+    # KEYDOWN vain rotate ja hard drop
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
         elif event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_LEFT:
-                board.move_left()
-            elif event.key == pygame.K_RIGHT:
-                board.move_right()
-            elif event.key == pygame.K_DOWN:
-                board.move_down()
-            elif event.key == pygame.K_UP:
+            if event.key == pygame.K_x:
                 board.rotate()
+            elif event.key == pygame.K_z:
+                board.unrotate()
+            elif event.key == pygame.K_SPACE:
+                board.hard_drop()
+
+    # DAS liike
+    keys = pygame.key.get_pressed()
+    if keys[pygame.K_LEFT] or keys[pygame.K_RIGHT] or keys[pygame.K_DOWN]:
+        move_delay += 1
+        if move_delay == 1:  # ensimmäinen frame
+            if keys[pygame.K_LEFT]:
+                board.move_left()
+            if keys[pygame.K_RIGHT]:
+                board.move_right()
+            if keys[pygame.K_DOWN]:
+                board.move_down()
+        elif move_delay >= DAS and (move_delay - DAS) % ARR == 0:
+            if keys[pygame.K_LEFT]:
+                board.move_left()
+            if keys[pygame.K_RIGHT]:
+                board.move_right()
+            if keys[pygame.K_DOWN]:
+                board.move_down()
+    else:
+        move_delay = 0
 
     # palat tippuu
     if gravity_counter >= GRAVITY_TICK:
         board.move_down()
         gravity_counter = 0
+
+    if board.is_on_ground: #apu lukitsemiseen, alkaa laskemaan kun palikka on maassa, jos liikkuu tai rotatoi niin nollaa
+        lock_delay += 1
+        if lock_delay >= LOCK_DELAY_MAX:
+            board._lock_piece()
+            lock_delay = 0
+    else:
+        lock_delay = 0
 
     renderer.render()
 

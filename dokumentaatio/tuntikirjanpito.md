@@ -7,4 +7,7 @@
 | 12.4 | 2.5    | Materiaalin tutustuminen, linttaus, pelin pieni edistys   |
 | 13.4 | 1.5    | Readme päivitys asennus ohjeilla sekä muut komennot, lisää koodia index.py  |
 | 14.4 | 6    | Työstin paljon pelia, nyt käyttöliittymä olemassa ja voi pelata (jollain tasolla). Dokumentaatiota ja testejäkin tehty. |
-| yht   | 13,5 | | 
+| 16.4 | 2.5  | Hard drop ominaisuus, rivit katoavat kun täyttyvät, pistetys, rotate left and right|
+| 17.4 | 1    | research|
+| 19.4 | 4    | delay before auto-shift ja auto-repeat rate ominaisuus lisätty, current piecea voi liikuttaa painamalla pohjaan, lock delay lisätty helpommin voi nyt liikutella paloja kun ovat kiinni jossain, delay niin ettei lukitsemisen jälkeen seuraava pala ala heti tippumaan jospitää arrow down, rotatet muutettu yksityiseksi funktioksi,|
+| yht   | 21 | | 

@@ -80,10 +80,10 @@ class Tetromino:
         shape = SHAPES[self.type][self.rotation]
         return [(self.x + bx, self.y + by) for bx, by in shape]
 
-    def rotate(self):
+    def _rotate(self):
         self.rotation = (self.rotation + 1) % 4
 
-    def unrotate(self):
+    def _unrotate(self):
         self.rotation = (self.rotation - 1) % 4
 
     @property
