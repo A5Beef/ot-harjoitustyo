@@ -44,12 +44,12 @@ class Board:
             return False
         self.is_on_ground = False
         return True
-    
+
     def hard_drop(self):
         while self.move_down():
             pass
 
-    def _lock_piece(self): #lukitsee palat ja tarkistaa loppuiko peli
+    def _lock_piece(self):  # lukitsee palat ja tarkistaa loppuiko peli
         for x, y in self.currentblock.get_blocks():
             self.grid[y][x] = self.currentblock.color
 
@@ -60,45 +60,53 @@ class Board:
         if not self._is_valid_position(self.currentblock):
             self.gameover = True
 
+    def try_lock(self): #lukitsee palikan jos pohjassa, apufunktio
+        if self.is_on_ground:
+            self._lock_piece()
+            return True
+        return False
+
     def rotate(self):
-        self.currentblock._rotate()
-        
+        self.currentblock.rotate()
+
         if not self._is_valid_position(self.currentblock):
-            #testataan pala oikealla
-            self.currentblock.x +=1
+            # testataan pala oikealla
+            self.currentblock.x += 1
 
             # testataan vasemmalla
             if not self._is_valid_position(self.currentblock):
                 self.currentblock.x -= 2
-                
+
                 # ei mahdu, perutaan
                 if not self._is_valid_position(self.currentblock):
                     self.currentblock.x += 1
                     self.currentblock.unrotate()
 
     def unrotate(self):
-        self.currentblock._unrotate()
+        self.currentblock.unrotate()
         if not self._is_valid_position(self.currentblock):
-            #testataan pala oikealla
-            self.currentblock.x +=1
+            # testataan pala oikealla
+            self.currentblock.x += 1
 
             # testataan vasemmalla
             if not self._is_valid_position(self.currentblock):
                 self.currentblock.x -= 2
-                
+
                 # ei mahdu, perutaan
                 if not self._is_valid_position(self.currentblock):
                     self.currentblock.x += 1
                     self.currentblock.rotate()
 
-    def _clear_lines(self): #tarkistaa ja tyhjentää täydet rivit
+    def _clear_lines(self):  # tarkistaa ja tyhjentää täydet rivit
         cleared_rows = []
         for row in range(20):
             if None not in self.grid[row]:
                 cleared_rows.append(row)
 
-        points = {1:100 , 2:300, 3:500, 4:800} #pisteet rivien mukaan, myöhemmin levels, spins, combot, hard/soft drop.
-        self.score += points.get(len(cleared_rows), 0)  # lisää pisteet, jos ei rivejä niin 0 pistettä
+        # pisteet rivien mukaan, myöhemmin levels, spins, combot, hard/soft drop.
+        points = {1: 100, 2: 300, 3: 500, 4: 800}
+        # lisää pisteet, jos ei rivejä niin 0 pistettä
+        self.score += points.get(len(cleared_rows), 0)
 
         # täysrivien poisto
         for row in reversed(cleared_rows):
@@ -118,11 +126,11 @@ class Board:
             self.is_on_ground = False
 
     def ghost_piece(self):
-        ghostblock = Tetromino(self.currentblock.type, self.currentblock.x, self.currentblock.y)
+        ghostblock = Tetromino(self.currentblock.type,
+                               self.currentblock.x, self.currentblock.y)
         ghostblock.rotation = self.currentblock.rotation
         while True:
             ghostblock.y += 1
             if not self._is_valid_position(ghostblock):
                 ghostblock.y -= 1
                 return ghostblock
-        

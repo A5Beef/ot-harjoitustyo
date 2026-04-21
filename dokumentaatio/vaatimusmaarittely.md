@@ -12,16 +12,17 @@ Toistaiseksi, en usko, että tarvitaan erilaisia käyttäjiä. Tai ei tule miele
 - Peli toimii ainakin niin, että pelin ydin on oikeanlainen
 - ✔ Oikeat värit palikoihin, samat kuin muissa peleissä.
 - Blokkien spinit toimivat (t-spins, I ja L spins)
-- pistetys systeemi
+- ✔ pistetys systeemi
 - Kivoja visuaalisia juttuja (onnittelee jos saat Tetriksen, combon, etc.)
 - ✔ Pelissä on Tetriksestä tutut palikat
 - Pelissä on next palat sivussa, jossa näkee tulevat palat.
 - Pelissä on main menu
-- Näkyy haamupala (ghost piece), eli muoto johon tippuva pala suuntaa
-- Palan voi hard droppaa ja soft droppaa (nopeammin alaspäin sekä heti tippuu alas)
+- ✔ Näkyy haamupala (ghost piece), eli muoto johon tippuva pala suuntaa
+- ✔ Palan voi hard droppaa ja soft droppaa (nopeammin alaspäin sekä heti tippuu alas)
 - Palan voi holdaa (1 kpl)
 - Pelissä on game over ruutu
 - Musiikkia (ehkä)
+- Grid lines koko kentällä
 
 ## AI/LLM käyttö sovelluksessa
 Sovelluksessa on käytetty AI:ta, koodin generointiin ja katselmointiin. AI:ta on myös hyödynnetty luokkakaavion luomiseen. Sekä GitHubissa tehdyt commit messaget

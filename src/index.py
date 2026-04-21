@@ -20,7 +20,9 @@ FPS = 60
 GRAVITY_TICK = 30
 MOVE_DELAY = 10
 DAS = 10        # delay before auto-shift, kuinka kauan pitää painaa ennenkuin alkaa nopea liike
-ARR = 3         # auto-repeat rate, kuinka nopeasti palikka liikkuu DAS jälkeen, 0 = heti, 1 = joka frame, 2 = joka toinen frame jne.
+# auto-repeat rate, kuinka nopeasti palikka liikkuu DAS jälkeen
+# 0 = heti, 1 = joka frame, 2 = joka toinen frame jne.
+ARR = 3
 LOCK_DELAY_MAX = 30
 
 gravity_counter = 0
@@ -44,7 +46,7 @@ while running:
                 board.unrotate()
             elif event.key == pygame.K_SPACE:
                 board.hard_drop()
-                lock_delay = LOCK_DELAY_MAX #skip lock delay
+                lock_delay = LOCK_DELAY_MAX  # skip lock delay
 
     # DAS liike
     keys = pygame.key.get_pressed()
@@ -72,10 +74,11 @@ while running:
         board.move_down()
         gravity_counter = 0
 
-    if board.is_on_ground: #apu lukitsemiseen, alkaa laskemaan kun palikka on maassa, jos liikkuu tai rotatoi niin nollaa
+    # apu lukitsemiseen, alkaa laskemaan kun palikka on maassa, jos liikkuu tai rotatoi niin nollaa
+    if board.is_on_ground:
         lock_delay += 1
         if lock_delay >= LOCK_DELAY_MAX:
-            board._lock_piece()
+            board.try_lock()
             lock_delay = 0
     else:
         lock_delay = 0
