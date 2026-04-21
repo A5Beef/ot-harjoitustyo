@@ -1,7 +1,7 @@
 # Ohjelmistotekniikka, harjoitustyö - Tetris
 
-Tetris-peli, pygamella tehty.
-
+Oma versioni Tetris-pelistä, pygamella tehty.
+Tetris palikoihin on valittu minulle mieluisat värit :\)
 
 ## Dokumentaatio
 

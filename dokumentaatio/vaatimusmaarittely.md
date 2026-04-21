@@ -23,6 +23,8 @@ Toistaiseksi, en usko, että tarvitaan erilaisia käyttäjiä. Tai ei tule miele
 - Pelissä on game over ruutu
 - Musiikkia (ehkä)
 - Grid lines koko kentällä
+- Settings: DAS ja ARR muokkaus, kontrollit.
+- Levels, pelistä tulee vaikeampi ajan/pisteiden myötä.
 
 ## AI/LLM käyttö sovelluksessa
 Sovelluksessa on käytetty AI:ta, koodin generointiin ja katselmointiin. AI:ta on myös hyödynnetty luokkakaavion luomiseen. Sekä GitHubissa tehdyt commit messaget

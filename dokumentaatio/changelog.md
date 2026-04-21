@@ -8,3 +8,10 @@
 - Palat liikkuvat ja niitä voi liikuttaa sekä kiertää.
 - Asennus ohjeet lisätty
 - Testejä lisätty palan liikutteluun.
+
+## Viikko 5
+- Lisätty pytestejä
+- Hard drop, ghost piece, line clears, pisteytys lisätty
+- DAS ja ARR lisätty, auttavat handlingissä. Ovat muokattavissa koodissa
+- Paloja voi liikuttaa painamalla pohjaan (ei tarvitse näpytellä)
+- Lock delay QOL change

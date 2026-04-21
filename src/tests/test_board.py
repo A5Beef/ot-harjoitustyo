@@ -43,6 +43,10 @@ class TestMovement(unittest.TestCase):
         self.board.rotate()
         self.assertEqual(self.board.currentblock.rotation, 0)
 
+    def test_unrotate(self):
+        self.board.unrotate()
+        self.assertEqual(self.board.currentblock.rotation, 3)
+
     def test_move_left(self):
         self.board.move_left()
         # block is in the middle so x value varies depending on block
@@ -57,3 +61,22 @@ class TestMovement(unittest.TestCase):
         self.assertEqual(self.board.currentblock.y, 1)
         self.board.move_down()
         self.assertEqual(self.board.currentblock.y, 2)
+
+    def test_hard_drop(self):
+        self.board.hard_drop()
+        self.assertTrue(self.board.is_on_ground)
+    
+
+class TestLockPiece(unittest.TestCase):
+    def setUp(self):
+        self.board = Board()
+        self.board.currentblock = Tetromino(TetrominoType.O, x=4, y=0)
+        self.board.nextblock = Tetromino(TetrominoType.O, x=4, y=0)
+
+    def test_lock_piece_changes_grid(self):
+        block = self.board.currentblock
+        self.board.hard_drop()
+        self.board._lock_piece()
+
+        for x, y in block.get_blocks():
+            self.assertEqual(self.board.grid[y][x], block.color)
