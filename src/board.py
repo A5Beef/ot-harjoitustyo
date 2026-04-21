@@ -62,13 +62,34 @@ class Board:
 
     def rotate(self):
         self.currentblock._rotate()
+        
         if not self._is_valid_position(self.currentblock):
-            self.currentblock._unrotate()
+            #testataan pala oikealla
+            self.currentblock.x +=1
+
+            # testataan vasemmalla
+            if not self._is_valid_position(self.currentblock):
+                self.currentblock.x -= 2
+                
+                # ei mahdu, perutaan
+                if not self._is_valid_position(self.currentblock):
+                    self.currentblock.x += 1
+                    self.currentblock.unrotate()
 
     def unrotate(self):
         self.currentblock._unrotate()
         if not self._is_valid_position(self.currentblock):
-            self.currentblock._rotate()
+            #testataan pala oikealla
+            self.currentblock.x +=1
+
+            # testataan vasemmalla
+            if not self._is_valid_position(self.currentblock):
+                self.currentblock.x -= 2
+                
+                # ei mahdu, perutaan
+                if not self._is_valid_position(self.currentblock):
+                    self.currentblock.x += 1
+                    self.currentblock.rotate()
 
     def _clear_lines(self): #tarkistaa ja tyhjentää täydet rivit
         cleared_rows = []
@@ -95,3 +116,13 @@ class Board:
         else:
             self.currentblock.y -= 1
             self.is_on_ground = False
+
+    def ghost_piece(self):
+        ghostblock = Tetromino(self.currentblock.type, self.currentblock.x, self.currentblock.y)
+        ghostblock.rotation = self.currentblock.rotation
+        while True:
+            ghostblock.y += 1
+            if not self._is_valid_position(ghostblock):
+                ghostblock.y -= 1
+                return ghostblock
+        

@@ -27,6 +27,13 @@ class Renderer:
 
     def _draw_current_piece(self):
         if self.board.currentblock:
+            #ghostpiece
+            ghost = self.board.ghost_piece()
+            for x, y in ghost.get_blocks():
+                pygame.draw.rect(self.screen, (100, 100, 100), 
+                (x * self.cell_size, y * self.cell_size, self.cell_size, self.cell_size))
+            
+            #currentpiece
             for x, y in self.board.currentblock.get_blocks():
                 pygame.draw.rect(
                     self.screen,

@@ -62,7 +62,7 @@ classDiagram
     Board "1" --> "1" Tetromino: nextblock
     Tetromino --> TetrominoType: type
     Renderer --> Board: uses
-    Renderer --> "pygame" : renders with
+    Renderer --> pygame: renders with
 ```
 
 ## Luokkien kuvaukset
