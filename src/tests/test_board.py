@@ -49,12 +49,12 @@ class TestMovement(unittest.TestCase):
 
     def test_move_left(self):
         self.board.move_left()
-        # block is in the middle so x value varies depending on block
+        # palikka on keskellä, joten x-arvo vaihtelee riippuen palikasta..
         self.assertEqual(self.board.currentblock.x, 2)
 
     def test_move_right(self):
         self.board.move_right()
-        self.assertEqual(self.board.currentblock.x, 4)  # same here
+        self.assertEqual(self.board.currentblock.x, 4)  # tässä sama
 
     def test_move_down(self):
         self.board.move_down()

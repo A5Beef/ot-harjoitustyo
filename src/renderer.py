@@ -8,7 +8,7 @@ class Renderer:
         self.cell_size = cell_size
 
     def render(self):
-        self.screen.fill((0, 0, 0))  # clear screen
+        self.screen.fill((0, 0, 0))  # musta tausta, toistaiseksi
         self._draw_board()
         self._draw_current_piece()
         self._draw_ui()
@@ -22,19 +22,19 @@ class Renderer:
                     pygame.draw.rect(self.screen, color,
                     (col * self.cell_size, row * self.cell_size, self.cell_size, self.cell_size))
 
-                    # locked blocks draw
+                    # ruudukkoviivan piirtäminen
                     pygame.draw.rect(self.screen, (50, 50, 50),
                     (col * self.cell_size, row * self.cell_size, self.cell_size, self.cell_size), 1)
 
     def _draw_current_piece(self):
         if self.board.currentblock:
-            # ghostpiece
+            # ghost piece - eli varjo mihin palikka putoaisi
             ghost = self.board.ghost_piece()
             for x, y in ghost.get_blocks():
                 pygame.draw.rect(self.screen, (100, 100, 100),
                 (x * self.cell_size, y * self.cell_size, self.cell_size, self.cell_size))
 
-            # currentpiece
+            # nykyinen palikan piirtäminen
             for x, y in self.board.currentblock.get_blocks():
                 pygame.draw.rect(
                     self.screen,
@@ -42,7 +42,7 @@ class Renderer:
                     (x * self.cell_size, y * self.cell_size,
                      self.cell_size, self.cell_size)
                 )
-                # gridlines
+                #ruudukkoviivan piirtäminen tippuva palikka
                 pygame.draw.rect(
                     self.screen,
                     (100, 100, 100),

@@ -46,7 +46,7 @@ while running:
                 board.unrotate()
             elif event.key == pygame.K_SPACE:
                 board.hard_drop()
-                lock_delay = LOCK_DELAY_MAX  # skip lock delay
+                lock_delay = LOCK_DELAY_MAX  # ohittaa lock delay:n
 
     # DAS liike
     keys = pygame.key.get_pressed()
@@ -85,7 +85,7 @@ while running:
 
     renderer.render()
 
-    # Check gameover
+    # Tarkistaa onko peli ohi
     if board.gameover:
         print(f"Game Over! Final Score: {board.score}")
         running = False
