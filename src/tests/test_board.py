@@ -65,7 +65,7 @@ class TestMovement(unittest.TestCase):
     def test_hard_drop(self):
         self.board.hard_drop()
         self.assertTrue(self.board.is_on_ground)
-    
+
 
 class TestLockPiece(unittest.TestCase):
     def setUp(self):

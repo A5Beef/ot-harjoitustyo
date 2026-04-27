@@ -47,6 +47,8 @@ while running:
             elif event.key == pygame.K_SPACE:
                 board.hard_drop()
                 lock_delay = LOCK_DELAY_MAX  # ohittaa lock delay:n
+            elif event.key == pygame.K_LSHIFT:
+                board.hold_piece()
 
     # DAS liike
     keys = pygame.key.get_pressed()

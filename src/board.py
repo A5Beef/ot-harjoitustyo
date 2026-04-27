@@ -10,6 +10,8 @@ class Board:
         self.grid = [[None]*10 for _ in range(20)]
         self.currentblock = Tetromino(random.choice(list(TetrominoType)))
         self.nextblock = Tetromino(random.choice(list(TetrominoType)))
+        self.holdblock = None
+        self.heldblock = False
         self.score = 0
         self.gameover = False
         self.is_on_ground = False
@@ -56,11 +58,12 @@ class Board:
         self._clear_lines()
         self.currentblock = self.nextblock
         self.nextblock = Tetromino(random.choice(list(TetrominoType)))
+        self.heldblock = False  # resettaa holdin, voi käyttää taas
 
         if not self._is_valid_position(self.currentblock):
             self.gameover = True
 
-    def try_lock(self): #lukitsee palikan jos pohjassa, apufunktio
+    def try_lock(self):  # lukitsee palikan jos pohjassa, apufunktio
         if self.is_on_ground:
             self._lock_piece()
             return True
@@ -82,6 +85,8 @@ class Board:
                     self.currentblock.x += 1
                     self.currentblock.unrotate()
 
+        self._check_on_ground()
+
     def unrotate(self):
         self.currentblock.unrotate()
         if not self._is_valid_position(self.currentblock):
@@ -96,6 +101,8 @@ class Board:
                 if not self._is_valid_position(self.currentblock):
                     self.currentblock.x += 1
                     self.currentblock.rotate()
+
+        self._check_on_ground()
 
     def _clear_lines(self):  # tarkistaa ja tyhjentää täydet rivit
         cleared_rows = []
@@ -134,3 +141,22 @@ class Board:
             if not self._is_valid_position(ghostblock):
                 ghostblock.y -= 1
                 return ghostblock
+
+    def hold_piece(self):
+        if self.heldblock:
+            return
+
+        if self.holdblock:  # jos edellinen holdi olemassa niin vaihda sen kanssa paikkaa
+            buffer = self.currentblock
+            self.currentblock = self.holdblock
+            self.currentblock.x = 3
+            self.currentblock.y = 0
+            self.currentblock.rotation = 0
+            self.holdblock = buffer
+        else:  # tyhjä holdi
+            self.holdblock = self.currentblock
+            self.currentblock = self.nextblock
+            self.nextblock = Tetromino(random.choice(list(TetrominoType)))
+
+        # Muuttaa True jos painetaan, estää spammin edes takaisin hold piecella.
+        self.heldblock = True

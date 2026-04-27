@@ -15,16 +15,17 @@ Toistaiseksi, en usko, että tarvitaan erilaisia käyttäjiä. Tai ei tule miele
 - ✔ pistetys systeemi
 - Kivoja visuaalisia juttuja (onnittelee jos saat Tetriksen, combon, etc.)
 - ✔ Pelissä on Tetriksestä tutut palikat
-- Pelissä on next palat sivussa, jossa näkee tulevat palat.
+- ✔ Pelissä on next pala sivussa, jossa näkee tulevan palan
 - Pelissä on main menu
 - ✔ Näkyy haamupala (ghost piece), eli muoto johon tippuva pala suuntaa
 - ✔ Palan voi hard droppaa ja soft droppaa (nopeammin alaspäin sekä heti tippuu alas)
-- Palan voi holdaa (1 kpl)
+- ✔ Palan voi holdaa (1 kpl)
 - Pelissä on game over ruutu
 - Musiikkia (ehkä)
 - Grid lines koko kentällä
 - Settings: DAS ja ARR muokkaus, kontrollit.
 - Levels, pelistä tulee vaikeampi ajan/pisteiden myötä.
+- ohjeet pelaamiseen, readme ja/tai settings/menu
 
 ## AI/LLM käyttö sovelluksessa
 Sovelluksessa on käytetty AI:ta, koodin generointiin ja katselmointiin. AI:ta on myös hyödynnetty luokkakaavion luomiseen. Sekä GitHubissa tehdyt commit messaget
