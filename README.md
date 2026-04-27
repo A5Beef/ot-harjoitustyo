@@ -54,3 +54,6 @@ Tiedoston [.pylintrc](./.pylintrc) määrittelemät tarkistukset voi suorittaa k
 ```bash
 poetry run invoke lint
 ```
+
+## Resurssit
+- [Press Start 2P](https://fonts.google.com/specimen/Press+Start+2P) -fontti: CodeMan38, [SIL Open Font License](https://scripts.sil.org/OFL)
