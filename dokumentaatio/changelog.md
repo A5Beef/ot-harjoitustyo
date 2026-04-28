@@ -15,3 +15,12 @@
 - DAS ja ARR lisätty, auttavat handlingissä. Ovat muokattavissa koodissa
 - Paloja voi liikuttaa painamalla pohjaan (ei tarvitse näpytellä)
 - Lock delay QOL change
+
+## Viikko 6
+- Projektin rakenne muutettu
+- index.py revampattu suurin määrin
+- Kommentit muutettu suomeksi
+- Uusi fontti
+- Next piece lisätty
+- Hold piece lisätty
+- Docstring dokumentaatiota tehty

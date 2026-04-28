@@ -69,6 +69,11 @@ COLORS = {
 
 
 class Tetromino:
+    """Edustaa yhtä Tetris-palikkaa pelilaudalla.
+    
+    Säilyttää palikan tyypin, sijainnin (x, y) ja rotaatiosuunnan.
+    Voidaan pyörittää ja siirtää pelilaudalla.
+    """
     def __init__(self, tetromino_type: TetrominoType, x: int = 3, y: int = 0):
         self.type = tetromino_type
         self.x = x
@@ -81,11 +86,24 @@ class Tetromino:
         return [(self.x + bx, self.y + by) for bx, by in shape]
 
     def rotate(self):
+        """Pyörittää palikkaa myötäpäivään (myötäpäivään).
+        
+        Päivittää rotaation indeksiä siten että se kiertymistilassa 0-3.
+        """
         self.rotation = (self.rotation + 1) % 4
 
     def unrotate(self):
+        """Pyörittää palikkaa vastapäivään.
+        
+        Päivittää rotaation indeksiä siten että se kiertymistilassa 0-3.
+        """
         self.rotation = (self.rotation - 1) % 4
 
     @property
     def color(self):
+        """Palauttaa palikan värin RGB-tupleena.
+        
+        Returns:
+            tuple: RGB-väri muodossa (R, G, B)
+        """
         return COLORS[self.type]

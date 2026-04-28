@@ -1,18 +1,22 @@
-import os
 import pygame
-
-
-FONT_PATH = os.path.join(os.path.dirname(__file__), "..", "..", "assets",
-                         "fonts", "PressStart2P-regular", "PressStart2P-Regular.ttf")
+from game.config import FONT_PATH
 
 
 class Renderer:
+    """Hallinnoi pelin grafiikan renderoimista Pygamella.
+    
+    Piirtää peliruudukon, palikat, seuraavan palikan, hold-palikan ja pelin käyttöliittymän.
+    """
     def __init__(self, screen, board, cell_size):
         self.screen = screen
         self.board = board
         self.cell_size = cell_size
 
     def render(self):
+        """Piirtää koko pelin näytön.
+        
+        Tyhjentää ruudun, piirtää kaikki pelikomponentit ja päivittää näytön.
+        """
         self.screen.fill((0, 0, 0))  # musta tausta, toistaiseksi
         self._draw_board()
         self._draw_current_piece()
@@ -22,6 +26,10 @@ class Renderer:
         pygame.display.flip()
 
     def _draw_board(self):
+        """Piirtää paikallaan olevat palikat ruudukolla.
+        
+        Käy läpi peliruudukon ja piirtää värityt ruudut sekä ruudukkorivit.
+        """
         for row in range(20):
             for col in range(10):
                 color = self.board.grid[row][col]
@@ -34,6 +42,10 @@ class Renderer:
                     (col * self.cell_size, row * self.cell_size, self.cell_size, self.cell_size), 1)
 
     def _draw_current_piece(self):
+        """Piirtää nykyisen palikan ja sen varjo-palikan.
+        
+        Piirtää ensin varjo-palikan harmaalla, sitten nykyisen palikan sen oikealla värillä.
+        """
         if self.board.currentblock:
             # ghost piece - eli varjo mihin palikka putoaisi
             ghost = self.board.ghost_piece()
@@ -59,6 +71,10 @@ class Renderer:
                 )
 
     def _draw_next_piece(self):
+        """Piirtää seuraavan palikan oikeassa yläkulmassa.
+        
+        Näyttää pelaajalle mikä palikka tulee seuraavaksi.
+        """
         if self.board.nextblock:
             # piirtää seuraavan palikan oikeaan yläkulmaan
             blocks = self.board.nextblock.get_blocks()
@@ -78,6 +94,10 @@ class Renderer:
                 pygame.draw.rect(self.screen, (100, 100, 100), r, 1)
 
     def _draw_hold_piece(self):
+        """Piirtää hold-palikan oikeassa alakulmassa.
+        
+        Näyttää pelaajalle mikä palikka on pois lyöty hold-toiminnolla.
+        """
         if self.board.holdblock:
             # piirtää hold palikan oikealle
             blocks = self.board.holdblock.get_blocks()
@@ -97,10 +117,15 @@ class Renderer:
                 pygame.draw.rect(self.screen, (100, 100, 100), r, 1)
 
     def _draw_ui(self):
+        """Piirtää pelin käyttöliittymä - pisteet ja tekstitiedot.
+        
+        Piirtää pisteet, "NEXT" ja "HOLD" -kehykset sekä näiden ympärillä olevat rajaukset.
+        """
         big_font = pygame.font.Font(FONT_PATH, 22)
         # pisteytys teksti
         score_text = big_font.render("SCORE:", True, (255, 255, 255))
-        score_value = big_font.render(str(self.board.score), True, (255, 255, 255))
+        score_value = big_font.render(
+            str(self.board.score), True, (255, 255, 255))
         self.screen.blit(score_text, (320, 20))
         self.screen.blit(score_value, (320, 55))
 
