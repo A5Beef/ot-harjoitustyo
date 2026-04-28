@@ -3,7 +3,7 @@
 Oma versioni Tetris-pelistä, pygamella tehty.
 Tetris palikoihin on valittu minulle mieluisat värit :\)
 
-## [Uusin release](https://github.com/A5Beef/ot-harjoitustyo/releases/tag/viikko5)
+## [Uusin release](https://github.com/A5Beef/ot-harjoitustyo/releases/tag/viikko6)
 
 ## Dokumentaatio
 
@@ -12,6 +12,7 @@ Tetris palikoihin on valittu minulle mieluisat värit :\)
 - [Työaikakirjanpito](./dokumentaatio/tuntikirjanpito.md)
 - [Changelog](./dokumentaatio/changelog.md)
 - [Arkkitehtuuri](./dokumentaatio/arkkitehtuuri.md)
+- [Käyttöohje](#käyttöohje)
 
 ## Asennus
 
