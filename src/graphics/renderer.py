@@ -2,7 +2,7 @@ import os
 import pygame
 
 
-FONT_PATH = os.path.join(os.path.dirname(__file__), "..", "assets",
+FONT_PATH = os.path.join(os.path.dirname(__file__), "..", "..", "assets",
                          "fonts", "PressStart2P-regular", "PressStart2P-Regular.ttf")
 
 

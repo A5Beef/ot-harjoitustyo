@@ -1,6 +1,12 @@
 import unittest
-from board import Board
-from tetrominoes import Tetromino, TetrominoType
+import sys
+import os
+
+# Lisää parent directory, jotta importit toimivat
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
+from game.board import Board
+from game.tetrominoes import Tetromino, TetrominoType
 
 
 class TestBoard(unittest.TestCase):
