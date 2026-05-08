@@ -31,5 +31,5 @@ FONT_PATH = os.path.join(
 )
 
 # Pelin ikkuna
-WINDOW_TITLE = "Tetris"
+WINDOW_TITLE = "Tetris by A5Beef"
 BACKGROUND_COLOR = (0, 0, 0)

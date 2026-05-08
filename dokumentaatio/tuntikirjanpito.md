@@ -15,4 +15,5 @@
 | 27.4 | 3    | UI fontti vaihdettu PressStart2P fontiksi, seuraava palikka toimninnallisuus lisätty, bugikorjaus reunoilla joskus palikka voi jäädä ilmaan jumiin jos rotatee oikealla framella|
 | 27.4 | 2    | Hold toiminnallisuus lisätty, linttaus, alustava käyttöohje tehty|
 | 28.4 | 7    | Rakenne muutettu järkevämmäksi. config.py luotu hallitsemaan muuttujat ja vakiot. docstring dokumentaatiota. index.py pilkottu peinimmiksi metodeiksi/funktoiksi ja sijoitettu Game luokkaan päälogiikaksi/ohjaukseksi, arkkitehtuuri.md päivitetty  |
-| yht   | 40,5 | | 
+| 8.5 | 6    | mainmenu, pauseruutu, gameover, gridlines lisätty. gamestates otettu käyttöön. Renderer suuret muutokset pause ruudun takia (bugfixit), vaatimusmäärittelyä päivitetty ja pylint komento korjattu |
+| yht   | 46,5 | | 

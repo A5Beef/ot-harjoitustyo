@@ -24,3 +24,12 @@
 - Next piece lisätty
 - Hold piece lisätty
 - Docstring dokumentaatiota tehty
+
+## Viikko 7
+- Main menu luotu
+- Pause-ruutu luotu ja sen stutterointi korjattu
+- Game over ruutu lisätty
+- Pelilaudan gridlines lisätty näkyviin joka ruutuun
+- Vaatimusmäärittelyä päivitetty, raksittu pois jätetyt toiminnallisuudet
+- Game statet otettu käyttöön
+- Pylint invoke komento korjattu

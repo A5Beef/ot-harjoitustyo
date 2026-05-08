@@ -1,5 +1,5 @@
 import pygame
-from game.config import FONT_PATH
+from game.config import FONT_PATH, SCREEN_WIDTH, SCREEN_HEIGHT
 
 
 class Renderer:
@@ -11,19 +11,24 @@ class Renderer:
         self.screen = screen
         self.board = board
         self.cell_size = cell_size
+        self._overlay_surface = None
 
     def render(self):
         """Piirtää koko pelin näytön.
         
         Tyhjentää ruudun, piirtää kaikki pelikomponentit ja päivittää näytön.
         """
+        self._render_internal()
+        pygame.display.flip()
+
+    def _render_internal(self):
+        """Sisäinen renderointikelpoinen - piirtää ilman display.flip() kutsua."""
         self.screen.fill((0, 0, 0))  # musta tausta, toistaiseksi
         self._draw_board()
         self._draw_current_piece()
         self._draw_next_piece()
         self._draw_hold_piece()
         self._draw_ui()
-        pygame.display.flip()
 
     def _draw_board(self):
         """Piirtää paikallaan olevat palikat ruudukolla.
@@ -32,14 +37,13 @@ class Renderer:
         """
         for row in range(20):
             for col in range(10):
+                cell_rect = (col * self.cell_size, row * self.cell_size, self.cell_size, self.cell_size)
                 color = self.board.grid[row][col]
                 if color is not None:
-                    pygame.draw.rect(self.screen, color,
-                    (col * self.cell_size, row * self.cell_size, self.cell_size, self.cell_size))
+                    pygame.draw.rect(self.screen, color, cell_rect)
 
-                    # ruudukkoviivan piirtäminen
-                    pygame.draw.rect(self.screen, (50, 50, 50),
-                    (col * self.cell_size, row * self.cell_size, self.cell_size, self.cell_size), 1)
+                # ruudukkoviivat piirretään aina, jotta koko pelilauta näkyy ruutuna
+                pygame.draw.rect(self.screen, (50, 50, 50), cell_rect, 1)
 
     def _draw_current_piece(self):
         """Piirtää nykyisen palikan ja sen varjo-palikan.
@@ -141,3 +145,28 @@ class Renderer:
         self.screen.blit(smaller_font.render(
             "HOLD",  True, (180, 180, 180)), (320, 300))
         pygame.draw.rect(self.screen, (255, 255, 255), (308, 285, 175, 160), 2)
+
+    def _get_overlay_surface(self):
+        if self._overlay_surface is None:
+            self._overlay_surface = pygame.Surface((SCREEN_WIDTH, SCREEN_HEIGHT))
+            self._overlay_surface.set_alpha(150)
+            self._overlay_surface.fill((0, 0, 0))
+        return self._overlay_surface
+
+    def draw_choice_screen(self, title, options, selected_index, title_position=(100, 100), option_position=(110, 250)):
+        """Piirtää valintaruudun pelin päälle."""
+        self._render_internal()
+
+        self.screen.blit(self._get_overlay_surface(), (0, 0))
+
+        font_title = pygame.font.Font(FONT_PATH, 40)
+        font_options = pygame.font.Font(FONT_PATH, 28)
+
+        self.screen.blit(font_title.render(title, True, (255, 255, 255)), title_position)
+        for index, option in enumerate(options):
+            color = (255, 255, 0) if index == selected_index else (255, 255, 255)
+            text_surface = font_options.render(option, True, color)
+            self.screen.blit(text_surface, (option_position[0], option_position[1] + index * 60))
+
+        pygame.display.flip()
+
