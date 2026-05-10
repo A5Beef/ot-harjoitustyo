@@ -19,6 +19,21 @@ Nyt ohjelman voi käynnistää komennolla:
 poetry run invoke start
 ```
 
+## Konfigurointi
+
+src/game/config.py:ssä voi hieman vaihtaa peliin liittyviä asetuksia   
+
+```
+GRAVITY_TICK = 30    # Kuinka monen framen välein palikka tippuu alas.
+                     # Pienempi luku = nopeampi putoaminen
+DAS = 10             # Delay Auto Shift: kuinka monta framea näppäin pitää
+                     # olla pohjassa ennen kuin jatkuva liike alkaa
+ARR = 3              # Auto Repeat Rate: kuinka monen framen välein palikka
+                     # liikkuu DAS:n jälkeen. 0 = välitön, suurempi = hitaampi
+LOCK_DELAY_MAX = 30  # Kuinka monta framea palikalla on aikaa liikkua ennen
+                     # kuin se lukittuu pohjaan
+```
+
 ## Päävalikko
 
 Sovellus käynnistyy päävalikkoon. Valikossa voi liikkua nuolinäppäimillä ja valita välilyönnillä.
@@ -55,6 +70,7 @@ Sovellus käynnistyy päävalikkoon. Valikossa voi liikkua nuolinäppäimillä j
 ## Pause-valikko
 
 ![](./kuvat/paused.png)
+
 Pelin voi keskeyttää Escape-näppäimellä. Valikossa voi valita:
 
 - **Resume** – jatkaa peliä
@@ -64,6 +80,7 @@ Pelin voi keskeyttää Escape-näppäimellä. Valikossa voi valita:
 ## Game Over
 
 ![](./kuvat/gameover.png)
+
 Pelin päätyttyä voi valita:
 
 - **Restart** – aloittaa uuden pelin
