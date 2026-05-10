@@ -18,4 +18,5 @@
 | 8.5 | 6    | mainmenu, pauseruutu, gameover, gridlines lisätty. gamestates otettu käyttöön. Renderer suuret muutokset pause ruudun takia (bugfixit), vaatimusmäärittelyä päivitetty ja pylint komento korjattu |
 | 9.5 | 3    | Linting, Dataclass Game-luokan attribuuteille luotu, Game over screen ja pause menun metodit refaktorointi|
 | 10.5 | 6    | Linting, Testaus.md ja Käyttöohje.md luotu, bugfix pausesta menuun ja uusi peli ei luonut uutta peliä vaan jatkoi vanhaa, paljon testejä tehty, vaatimusmäärittely päivityetty,|
-| yht   | 46,5 | | 
+| 10.5 | 2    | Arkkitehtuuri.md päivitytetty vastaamaan muutoksia, käyttohje pieni muokkaus|
+| yht   | 57,5 | | 

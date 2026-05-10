@@ -7,13 +7,13 @@ Lataa projektin viimeisimmän [releasen](https://github.com/A5Beef/ot-harjoitust
 
 ## Ohjelman käynnistäminen
 
-Ennen ohjelman käynnistämistä, asenna riippuvuudet komennolla:
+Asenna ensin riippuvuudet komennolla:
 
 ```bash
 poetry install
 ```
 
-Nyt ohjelman voi käynnistää komennolla:
+Ohjelman voi käynnistää seuraavalla komennolla:
 
 ```bash
 poetry run invoke start

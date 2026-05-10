@@ -16,6 +16,7 @@ src/
 ├── graphics/          # Grafiikka ja renderöinti
 │   ├── __init__.py
 │   └── renderer.py    # Pygame renderöinti
+    └── menu.py        # Main menun renderöinti sekä syötteet (arkkitehtuurillinen virhe)
 └── tests/
     ├── __init__.py
     └── test_board.py  # Yksikkötestit
@@ -26,7 +27,7 @@ src/
 ### game/ (Sovelluslogiikka)
 
 #### **config.py**
-- Sisältää kaikki pelin vakiot ja konfiguraatiot
+- Sisältää pelin vakiot ja konfiguraatiot
 - CELL_SIZE, BOARD_WIDTH, BOARD_HEIGHT, FPS, DAS, ARR jne.
 - FONT_PATH: fontin sijainti
 
@@ -78,7 +79,23 @@ src/
   - `_draw_hold_piece()`: hold-palikka näyttöön
   - `_draw_ui()`: käyttöliittymä (pisteet, tekstit)
 
+### **menu.py - Menu-luokka**
+- Hallinnoi main menun visualisointia Pygame-kirjastolla
+- Halinnoi myös syötteitä main menussa
+- Piirtää:
+  - `draw`: Otsikko, tekijä ja valikkovaihtoehdot. Valittu vaihtoehto on korostettu keltaisella.
+  - `handle_event`: Main menu syötteet, ylös, alas ja välilyönti.
+
 ### index.py (Pääohjelma)
+
+#### **GameRuntime-dataluokka**
+- Game-luokasta otetut attribuutit, linttausta ja helpon lukuisuutta varten
+
+- Ominaisuudet:
+  - `running`: pelin tila
+  - Laskurit: gravity_counter, move_delay, lock_delay
+  - Menut: pause_selected, game_over_selected (indeksointi, mikä valittu tällä hetkellä)
+
 
 #### **Game-luokka**
 - Pääsovelluksen logiikka
@@ -87,27 +104,40 @@ src/
 - Ominaisuudet:
   - `board`: Board-objekti
   - `renderer`: Renderer-objekti
-  - `running`: pelin tila
-  - Laskurit: gravity_counter, move_delay, lock_delay
+  - `menu`: Menu-objekti
+  - `state`: Pelintila
+  - `runtime`: GameRuntime-luokka, attribuutteja
 
 - Päämenetelmät:
   - `handle_input()`: käyttäjän syötteiden käsittely
+    - `_handle_keydown()`: käyttäjän yksittäiset painallukset
+    - `_handle_continuous_movement`: käyttäjän jatkuvat liikkeet
   - `update_gravity()`: palikan painovoiman hallinta
   - `handle_lock()`: palikan lukitseminen
   - `check_game_over()`: pelin loppumisen tarkistus
+  - `_restart_game()`: aloittaa pelin alusta
   - `update()`: kaiken päivitys
   - `render()`: näytön piirtäminen
   - `run()`: peli silmukka
+  - Valikot (`_run_menu, run_paused, run_game_over`): Valikoiden toiminta
+  - Handling (`paused_keydown, game_over_keydown`): syötteet valikoissa
+  - Choice (`activate_ paused_choice/game_over_choice`): Valikoissa numerot toimintaan.
+
 
 ## Tiedonkulku
 
 ```
 Game.run() (peli silmukka)
-  ├── handle_input() → Board (liikkeet, rotaatiot)
-  ├── update_gravity() → Board.move_down()
-  ├── handle_lock() → Board.try_lock()
-  ├── check_game_over() → Board.gameover
-  └── render() → Renderer.render() → näyttö
+  ├── runtime.running → määrittää jatkuuko peli
+  ├── state == MENU → _run_menu() → Menu.handle_event() / Menu.draw()
+  ├── state == PLAYING
+  │   ├── handle_input() → Board (liikkeet, rotaatiot)
+  │   ├── update_gravity() → Board.move_down()
+  │   ├── handle_lock() → Board.try_lock()
+  │   ├── check_game_over() → Board.gameover
+  │   └── render() → Renderer.render() → näyttö
+  ├── state == PAUSED → _run_paused() → Renderer.draw_choice_screen()
+  └── state == GAME_OVER → _run_game_over() → Renderer.draw_choice_screen()
 ```
 
 ## Arkkitektuurin edut
