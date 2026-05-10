@@ -15,7 +15,7 @@ SCREEN_HEIGHT = BOARD_HEIGHT * CELL_SIZE
 FPS = 60
 GRAVITY_TICK = 30           # kuinka monen framen välein pala putoaa
 DAS = 10                    # delay before auto-shift
-                            #eli kuinka kauan pitää painaa ennenkuin alkaa nopea liike
+# eli kuinka kauan pitää painaa ennen kuin alkaa nopea liike
 ARR = 3                     # auto-repeat rate, kuinka nopeasti palikka liikkuu DAS jälkeen
 LOCK_DELAY_MAX = 30         # kuinka kauan palikka voi pyöriä/liikkua ennen kuin lukitaan
 

@@ -4,9 +4,10 @@ from game.config import FONT_PATH, SCREEN_WIDTH, SCREEN_HEIGHT
 
 class Renderer:
     """Hallinnoi pelin grafiikan renderoimista Pygamella.
-    
+
     Piirtää peliruudukon, palikat, seuraavan palikan, hold-palikan ja pelin käyttöliittymän.
     """
+
     def __init__(self, screen, board, cell_size):
         self.screen = screen
         self.board = board
@@ -15,7 +16,7 @@ class Renderer:
 
     def render(self):
         """Piirtää koko pelin näytön.
-        
+
         Tyhjentää ruudun, piirtää kaikki pelikomponentit ja päivittää näytön.
         """
         self._render_internal()
@@ -32,12 +33,13 @@ class Renderer:
 
     def _draw_board(self):
         """Piirtää paikallaan olevat palikat ruudukolla.
-        
+
         Käy läpi peliruudukon ja piirtää värityt ruudut sekä ruudukkorivit.
         """
         for row in range(20):
             for col in range(10):
-                cell_rect = (col * self.cell_size, row * self.cell_size, self.cell_size, self.cell_size)
+                cell_rect = (col * self.cell_size, row *
+                             self.cell_size, self.cell_size, self.cell_size)
                 color = self.board.grid[row][col]
                 if color is not None:
                     pygame.draw.rect(self.screen, color, cell_rect)
@@ -47,7 +49,7 @@ class Renderer:
 
     def _draw_current_piece(self):
         """Piirtää nykyisen palikan ja sen varjo-palikan.
-        
+
         Piirtää ensin varjo-palikan harmaalla, sitten nykyisen palikan sen oikealla värillä.
         """
         if self.board.currentblock:
@@ -76,7 +78,7 @@ class Renderer:
 
     def _draw_next_piece(self):
         """Piirtää seuraavan palikan oikeassa yläkulmassa.
-        
+
         Näyttää pelaajalle mikä palikka tulee seuraavaksi.
         """
         if self.board.nextblock:
@@ -99,7 +101,7 @@ class Renderer:
 
     def _draw_hold_piece(self):
         """Piirtää hold-palikan oikeassa alakulmassa.
-        
+
         Näyttää pelaajalle mikä palikka on pois lyöty hold-toiminnolla.
         """
         if self.board.holdblock:
@@ -122,7 +124,7 @@ class Renderer:
 
     def _draw_ui(self):
         """Piirtää pelin käyttöliittymä - pisteet ja tekstitiedot.
-        
+
         Piirtää pisteet, "NEXT" ja "HOLD" -kehykset sekä näiden ympärillä olevat rajaukset.
         """
         big_font = pygame.font.Font(FONT_PATH, 22)
@@ -148,12 +150,15 @@ class Renderer:
 
     def _get_overlay_surface(self):
         if self._overlay_surface is None:
-            self._overlay_surface = pygame.Surface((SCREEN_WIDTH, SCREEN_HEIGHT))
+            self._overlay_surface = pygame.Surface(
+                (SCREEN_WIDTH, SCREEN_HEIGHT))
             self._overlay_surface.set_alpha(150)
             self._overlay_surface.fill((0, 0, 0))
         return self._overlay_surface
 
-    def draw_choice_screen(self, title, options, selected_index, title_position=(100, 100), option_position=(110, 250)):
+    def draw_choice_screen(self, title, options, selected_index, *,
+            title_position=(100, 100), option_position=(110, 250)):
+
         """Piirtää valintaruudun pelin päälle."""
         self._render_internal()
 
@@ -162,11 +167,13 @@ class Renderer:
         font_title = pygame.font.Font(FONT_PATH, 40)
         font_options = pygame.font.Font(FONT_PATH, 28)
 
-        self.screen.blit(font_title.render(title, True, (255, 255, 255)), title_position)
+        self.screen.blit(font_title.render(
+            title, True, (255, 255, 255)), title_position)
         for index, option in enumerate(options):
-            color = (255, 255, 0) if index == selected_index else (255, 255, 255)
+            color = (255, 255, 0) if index == selected_index else (
+                255, 255, 255)
             text_surface = font_options.render(option, True, color)
-            self.screen.blit(text_surface, (option_position[0], option_position[1] + index * 60))
+            self.screen.blit(
+                text_surface, (option_position[0], option_position[1] + index * 60))
 
         pygame.display.flip()
-

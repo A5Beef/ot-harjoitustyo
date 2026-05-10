@@ -33,3 +33,8 @@
 - Vaatimusmäärittelyä päivitetty, raksittu pois jätetyt toiminnallisuudet
 - Game statet otettu käyttöön
 - Pylint invoke komento korjattu
+- testaus dokumentti ja tarkempi käyttöohje luotu
+- Index.py:ssä Game-luokan attribuutteja siirretty GameRuntime-dataclassiin.
+- Bugfix: Pause --> Main menu --> Start Game, aloittaa nyt uuden pelin eikä muista aikaisempaa peliä.
+- Pause menun ja game over -screenin metodit refaktoroitu
+- Monta uusia unittestejä luotu

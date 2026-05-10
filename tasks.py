@@ -26,4 +26,5 @@ def format(ctx):
 
 @task #käsky koodin tarkistamiseen
 def lint(ctx):
-    ctx.run("pylint src/index.py src/game src/graphics", pty=True)
+    #Jätetty pois src/graphics/ kansio, kurssin ohjeistuksen mukaisesti.
+    ctx.run("pylint src/index.py src/game", pty=True)

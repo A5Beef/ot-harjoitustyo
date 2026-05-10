@@ -38,6 +38,7 @@ Osoittautuivat liian monimutkaisiksi tai työlääksi
 - Luovutetut toiminnalisuudet
 - Ikkunan koon muokattavuus
 - High score muistissa tai vaikka vaan istunnossa
+- RNG parannusta. Tällä hetkellä pythonin pseudo-random generointi palikoille. Modernisimmissa Tetris-peleissä on jonkinlainen algoritmi tai logiikka seuraavien palikoiden valitsemiseen. Esim. joka kerta kun I-pala ei ilmesty niin sen todennäköisyys nousisi 1%:lla. Tai jos sama palikka on jo ilmestynyt monta kertaa putkeen niin sen todennäköisyys, että ilmestyisi taas lasketaan.
 
 ## AI/LLM käyttö sovelluksessa
 Sovelluksessa on käytetty AI:ta, koodin generointiin ja katselmointiin. AI:ta on myös hyödynnetty luokkakaavion ja sekvenssikaavion luomiseen. Hyödynnetty myös commit messageissa sekä kirjoitusvirheiden ja kirjoitusasun tarkistukseen.

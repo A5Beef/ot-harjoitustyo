@@ -16,4 +16,6 @@
 | 27.4 | 2    | Hold toiminnallisuus lisätty, linttaus, alustava käyttöohje tehty|
 | 28.4 | 7    | Rakenne muutettu järkevämmäksi. config.py luotu hallitsemaan muuttujat ja vakiot. docstring dokumentaatiota. index.py pilkottu peinimmiksi metodeiksi/funktoiksi ja sijoitettu Game luokkaan päälogiikaksi/ohjaukseksi, arkkitehtuuri.md päivitetty  |
 | 8.5 | 6    | mainmenu, pauseruutu, gameover, gridlines lisätty. gamestates otettu käyttöön. Renderer suuret muutokset pause ruudun takia (bugfixit), vaatimusmäärittelyä päivitetty ja pylint komento korjattu |
+| 9.5 | 3    | Linting, Dataclass Game-luokan attribuuteille luotu, Game over screen ja pause menun metodit refaktorointi|
+| 10.5 | 6    | Linting, Testaus.md ja Käyttöohje.md luotu, bugfix pausesta menuun ja uusi peli ei luonut uutta peliä vaan jatkoi vanhaa, paljon testejä tehty, vaatimusmäärittely päivityetty,|
 | yht   | 46,5 | | 

@@ -4,10 +4,11 @@ from .tetrominoes import Tetromino, TetrominoType
 
 class Board:
     """Hallinnoi Tetris-pelilautaa ja pelimekaniikkaa.
-    
+
     Säilyttää peliruudukon, nykyisen ja seuraavan palikan, pisteet ja pelin tilan.
     Käsittelee palikan liikkeet, rotaatiot, lukitsemisen ja rivien poistamisen.
     """
+
     def __init__(self):
         self.grid = [[None]*10 for _ in range(20)]
         self.currentblock = Tetromino(random.choice(list(TetrominoType)))
@@ -20,12 +21,12 @@ class Board:
 
     def _is_valid_position(self, piece: Tetromino):
         """Tarkistaa onko palikan uusi positio kelvollinen.
-        
+
         Tarkistaa ettei palikka ole reunojen ulkopuolella tai muiden palikan päällä.
-        
+
         Args:
             piece: Tetromino-objekti, jonka positiota tarkistetaan
-            
+
         Returns:
             bool: True jos positio on kelvollinen, False muuten
         """
@@ -40,7 +41,7 @@ class Board:
 
     def move_left(self):
         """Siirtää nykyistä palikkaa vasemmalle.
-        
+
         Jos uusi positio on kelvollinen, palikka siirretään. Muuten palikka pysyy paikallaan.
         """
         self.currentblock.x -= 1
@@ -50,7 +51,7 @@ class Board:
 
     def move_right(self):
         """Siirtää nykyistä palikkaa oikealle.
-        
+
         Jos uusi positio on kelvollinen, palikka siirretään. Muuten palikka pysyy paikallaan.
         """
         self.currentblock.x += 1
@@ -60,10 +61,10 @@ class Board:
 
     def move_down(self):
         """Siirtää nykyistä palikkaa alas.
-        
+
         Jos palikka osuu pohjaan tai toiseen palikkaan, se lukitaan ja tilaksi
         asetetaan True.
-        
+
         Returns:
             bool: True jos palikka siirtyi, False jos palikka osui pohjaan
         """
@@ -77,7 +78,7 @@ class Board:
 
     def hard_drop(self):
         """Pudottaa nykyisen palikan suoraan pohjaan.
-        
+
         Kutsuu move_down() toistuvasti kunnes palikka osuu pohjaan tai toiseen palikkaan.
         """
         while self.move_down():
@@ -85,7 +86,7 @@ class Board:
 
     def _lock_piece(self):
         """Lukitsee nykyisen palikan lautaan ja generoi seuraavan palikan.
-        
+
         Sijoittaa nykyisen palikan ruudukkoihin, tyhjentää täydet rivit,
         kutsuu seuraavan palikan nykyiseksi ja generoi uuden seuraavan palikan.
         Jos uusi palikka ei mahdu, peli päättyy.
@@ -103,7 +104,7 @@ class Board:
 
     def try_lock(self):
         """Yrittää lukita palikan jos se on pohjassa.
-        
+
         Returns:
             bool: True jos palikka lukitiin, False muuten
         """
@@ -114,7 +115,7 @@ class Board:
 
     def rotate(self):
         """Pyörittää nykyistä palikkaa myötäpäivään.
-        
+
         Käyttää wall-kick -mekanikka jos palikka osuu seinään rotaation jälkeen.
         Yrittää siirtää palikkaa oikealle tai vasemmalle rotaation jälkeen.
         """
@@ -137,7 +138,7 @@ class Board:
 
     def unrotate(self):
         """Pyörittää nykyistä palikkaa vastapäivään.
-        
+
         Käyttää wall-kick -mekanikka jos palikka osuu seinään rotaation jälkeen.
         Yrittää siirtää palikkaa oikealle tai vasemmalle rotaation jälkeen.
         """
@@ -159,7 +160,7 @@ class Board:
 
     def _clear_lines(self):
         """Tarkistaa ja poistaa täydet rivit sekä lisää pisteet.
-        
+
         Etsii kaikki täydet rivit, lisää vastaavat pisteet, poistaa täydet rivit
         ja lisää uusia tyhjiä rivejä ylös.
         """
@@ -183,7 +184,7 @@ class Board:
 
     def _check_on_ground(self):
         """Tarkistaa onko nykyinen palikka pohjassa tai toisen palikan päällä.
-        
+
         Apumetodi jota kutsutaan liikkeen ja rotaation jälkeen.
         Päivittää is_on_ground-tilaa.
         """
@@ -197,7 +198,7 @@ class Board:
 
     def ghost_piece(self):
         """Luo "varjo"-palikan joka näyttää mihin nykyinen palikka putoaa.
-        
+
         Returns:
             Tetromino: Uusi Tetromino-objekti joka on sijoitettu mihin nykyinen palikka putoaa
         """
@@ -212,7 +213,7 @@ class Board:
 
     def hold_piece(self):
         """Vaihtaa nykyisen palikan hold-palikaksi tai päinvastoin.
-        
+
         Jos palikka on jo pidetty tässä kierroksessa, ei tee mitään.
         Muuten vaihtaa nykyisen ja hold-palikan keskenään.
         """
