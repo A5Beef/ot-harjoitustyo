@@ -12,8 +12,8 @@ Tetris palikoihin on valittu minulle mieluisat värit :\)
 - [Työaikakirjanpito](./dokumentaatio/tuntikirjanpito.md)
 - [Changelog](./dokumentaatio/changelog.md)
 - [Arkkitehtuuri](./dokumentaatio/arkkitehtuuri.md)
-- [Käyttöohje](#käyttöohje)
-
+- [Käyttöohje](./dokumentaatio/käyttöohje.md)
+- [Testausdokumentti](./dokumentaatio/testaus.md)
 ## Asennus
 
 1. Asenna riippuvuudet:
@@ -55,12 +55,6 @@ Tiedoston [.pylintrc](./.pylintrc) määrittelemät tarkistukset voi suorittaa k
 ```bash
 poetry run invoke lint
 ```
-
-## Käyttöohje
-
-Putoavaa palikkaa voi ohjata nuolinäppäimillä. Space-nappi tiputtaa palikan heti alas, shift tallentaa palikan tulevaisuuden tarpeelle. Z ja X napit kiertävät palikkaa.
-
-Yritä saada mahdollisimman paljon pisteitä tyhjentämällä rivejä! Sitä enemmän rivejä tyhjennetään kerralla, sitä enemmän pisteitä. Kannattaa laittaa palikat järkevästi!
 
 ## Resurssit
 - [Press Start 2P](https://fonts.google.com/specimen/Press+Start+2P) -fontti: CodeMan38, [SIL Open Font License](https://scripts.sil.org/OFL)
